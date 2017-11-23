@@ -12,6 +12,7 @@
 ]]--
 
 local wp = minetest.get_worldpath() .. "/luscious"
+minetest.mkdir(wp)
 
 local mgp = minetest.get_mapgen_params()
 local chunksize = 16 * mgp.chunksize
@@ -34,8 +35,12 @@ local function after_place_node(pos, placer, itemstack, pointed_thing)
 	local l = o.z * (chunksize) + o.x
 	local p = minetest.hash_node_position(v)
 
-	local f = assert(io.open(wp .. "/" .. string.format("%d", p), "r"),
-		"unable to find map for " .. string.format("%d", p))
+	local f = io.open(wp .. "/" .. string.format("%d", p), "r")
+	if not f then
+		minetest.log("error", "unable to find map for " .. string.format("%d", p))
+		return
+	end
+
 	local z = f:read("*a")
 	f:close()
 	local map = minetest.decompress(z)
