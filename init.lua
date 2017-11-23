@@ -16,6 +16,17 @@ local wp = minetest.get_worldpath() .. "/luscious"
 local mgp = minetest.get_mapgen_params()
 local chunksize = 16 * mgp.chunksize
 
+local function cmpy(p2, y)
+	if y > 0 then
+		local h1 = p2 % 16
+		local h2 = math.floor(p2 / 16) * 16
+
+		h1 = h1 - math.max(math.min(h1, math.floor(y / 16)), 0)
+		return math.max(1, h1 + h2)
+	else
+		return math.max(1, p2)
+	end
+end
 local function after_place_node(pos, placer, itemstack, pointed_thing)
 	-- get chunk from pos
 	local v = vector.apply(pos, function(a) return math.floor((a - 48) / chunksize) end)
@@ -30,7 +41,7 @@ local function after_place_node(pos, placer, itemstack, pointed_thing)
 	local map = minetest.decompress(z)
 
 	local node = minetest.get_node(pos)
-	node.param2 = string.byte(map, l + 1)
+	node.param2 = cmpy(string.byte(map, l + 1), pos.y)
 	minetest.swap_node(pos, node)
 end
 
@@ -137,7 +148,7 @@ minetest.register_on_generated(function(minp, maxp, blockseed)
 		for x = minp.x, maxp.x do
 			local vv = (x - minp.x) + ((z - minp.z) * chunksize)
 			if cs[data[vi]] then
-				local mv = string.byte(map, vv + 1)
+				local mv = cmpy(string.byte(map, vv + 1), y)
 				p2data[vi] = mv
 			end
 			vi = vi + 1
