@@ -31,3 +31,8 @@ nodes in the landscape.
 - inventory items lack proper coloring
 - snowy pine trees are missing
 
+## palette
+
+The large palette image is generated with:
+  `convert textures/default_luscious_palette.png -filter point -resize 256x256 textures/palette_large.png`
+
