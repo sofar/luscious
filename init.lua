@@ -54,7 +54,7 @@ minetest.override_item("default:dirt_with_grass", {
 	paramtype2 = "color",
 	drawtype = "color",
 	palette_index = 136,
-	palette = "luscious_luscious_palette.png",
+	palette = "luscious_grass_palette.png",
 	tiles = {"luscious_grass.png", {name = "default_dirt.png", color = "white"}, "luscious_grass.png"},
 	overlay_tiles = {"", "", {name = "luscious_dirt_overlay.png", color = "white"}},
 	place_param2 = 136,
@@ -75,7 +75,7 @@ for _, v in pairs({
 	minetest.override_item(v, {
 		paramtype2 = "color",
 		palette_index = 136,
-		palette = "luscious_luscious_palette.png",
+		palette = "luscious_leaves_palette.png",
 		tiles = {tile},
 		place_param2 = 136,
 		after_place_node = after_place_node,
@@ -99,7 +99,7 @@ for _, v in pairs({
 	minetest.override_item(v, {
 		paramtype2 = "color",
 		palette_index = 136,
-		palette = "luscious_luscious_palette.png",
+		palette = "luscious_grass_palette.png",
 		tiles = {tile},
 		place_param2 = 136,
 		after_place_node = after_place_node,
