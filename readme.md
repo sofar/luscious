@@ -33,8 +33,7 @@ nodes in the landscape.
 
 - leaf decay is broken due to p2 usage
 - grass spread is broken or will place wrongly colored grass nodes
-- inventory items lack proper coloring
-- snowy pine trees are missing
+- snowy pine trees are no longer generated, only regular pines
 
 ## palette
 
