@@ -28,7 +28,7 @@ local function cmpy(p2, y)
 		return math.max(1, p2)
 	end
 end
-local function after_place_node(pos, placer, itemstack, pointed_thing)
+local function on_construct(pos)
 	-- get chunk from pos
 	local v = vector.apply(pos, function(a) return math.floor((a - 48) / chunksize) end)
 	local o = vector.subtract(pos, vector.apply(v, function(a) return (a * chunksize) + 48 end))
@@ -59,7 +59,7 @@ minetest.override_item("default:dirt_with_grass", {
 	tiles = {"luscious_grass.png", {name = "default_dirt.png", color = "white"}, "luscious_grass.png"},
 	overlay_tiles = {"", "", {name = "luscious_dirt_overlay.png", color = "white"}},
 	place_param2 = 136,
-	after_place_node = after_place_node,
+	on_construct = on_construct,
 })
 
 for _, v in pairs({
@@ -80,7 +80,7 @@ for _, v in pairs({
 		color = "#8afb94ff",
 		tiles = {tile},
 		place_param2 = 136,
-		after_place_node = after_place_node,
+		on_construct = on_construct,
 	})
 end
 
@@ -105,7 +105,7 @@ for _, v in pairs({
 		color = "#7dea1eff",
 		tiles = {tile},
 		place_param2 = 136,
-		after_place_node = after_place_node,
+		on_construct = on_construct,
 	})
 end
 for i = 1, 5 do
@@ -182,7 +182,7 @@ local function update_p2(pos, size)
 		local p = vector.new(x, y, z)
 		local node = minetest.get_node(p)
 		if cn[node.name] then
-			after_place_node(p)
+			on_construct(p)
 		end
 	end
 	end

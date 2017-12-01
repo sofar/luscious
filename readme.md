@@ -24,7 +24,9 @@ nodes in the landscape.
 - separate palette to color leaves and grass.
 - should not break with texture packs, but you'll lose texture
   pack specific leaf and grass textures.
+- grass spread places the correct color.
 - jungle dirt is replaced by dirt with grass.
+- jungle grass is also colored.
 - dirt with dry grass is replaced by dirt with grass.
 - dirt with snow is replaced by dirt with grass.
 - dry grass is replaced with grass.
@@ -32,7 +34,6 @@ nodes in the landscape.
 ## bugs
 
 - leaf decay is broken due to p2 usage
-- grass spread is broken or will place wrongly colored grass nodes
 - snowy pine trees are no longer generated, only regular pines
 
 ## palette
