@@ -30,10 +30,10 @@ nodes in the landscape.
 - dirt with dry grass is replaced by dirt with grass.
 - dirt with snow is replaced by dirt with grass.
 - dry grass is replaced with grass.
+- Support recolor for ethereal prairie , bamboo and dry dirt.
 
 ## bugs
-
-- leaf decay is broken due to p2 usage
+- Leaf decay require the newest version of minetest game if not it's disabled. 
 - snowy pine trees are no longer generated, only regular pines
 
 ## palette
@@ -50,20 +50,3 @@ The large palette image is generated with:
 Create a new world, enable this mod. Do not use this mod in an existing
 world, ever.
 
-## How does this work?
-
-The biome data is available in a special thread when mapgen emerges
-new map blocks. This mod captures the biome heat and humidity values
-right as mapgen creates them and stores them permanently for later
-use. This is why you need to have a `luscious` folder in the world
-folder. In this folder, we store the heat & humidity param2 values
-for each node that needs coloring in an X-Z map (Y is discarded as
-biome data does not use Y and is not 3d noise, it's only 2D).
-
-Once the biome data is known, we can retrieve it to set the correct
-p2 values when a player places any of the nodes that need coloring, or
-when a tree grows. This is also why the biome data needs to be stored
-on disk - otherwise it would be lost. The storage of the biome data
-is reasonably small - it is stored compressed and uses about 600 bytes
-or so per x, z chunk, which is small compared to the actual map.sqlite
-size. The data increases the size of your world by about 12% or so.
