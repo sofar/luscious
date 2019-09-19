@@ -23,7 +23,7 @@ local function chose_color(pos)
     local vh = math.floor(math.min(math.max(math.floor(hum1), 0), 100) / 6.6)
 	local vt = math.floor(math.min(math.max(math.floor(temp1), 0), 100) / 6.6)
 	local c1 = (vt + (vh * 16))
-    --minetest.chat_send_all(temp1)
+    if c1 < 2 then c1 = 2 end
     return c1
 end
 
@@ -73,7 +73,6 @@ minetest.override_item("default:sand", {
 	color = "#f3dec3ff",
 	palette = "luscious_default_sand_palette.png",
 	tiles = {"luscious_default_sand.png", {name = "default_sand.png", color = "white"}, "luscious_default_sand.png"},
---	overlay_tiles = {"", "", {name = "luscious_dirt_overlay.png", color = "white"}},
 	place_param2 = 136,
 	drop  = "default:sand",
 	on_construct = on_construct,
@@ -119,7 +118,7 @@ minetest.override_item("ethereal:dry_dirt", {
 	paramtype2 = "color",
 	drawtype = "color",
 	palette_index = 136,
-	color = "#7dea1eff",
+	color = "#B79370ff",
 	palette = "luscious_ethereal_dry_dirt_palette.png",
 	tiles = {"luscious_ethereal_dry_dirt.png", {name = "luscious_ethereal_dry_dirt.png", color = "white"}, "luscious_ethereal_dry_dirt.png"},
 	place_param2 = 136,
@@ -150,6 +149,7 @@ for _, v in pairs({
 		color = "#8afb94ff",
 		tiles = {tile},
 		place_param2 = 136,
+        visual_scale = 1.8,
 		groups = {snappy = 3, flammable = 2, leaves = 1, leafdecay = 1},
 		on_construct = on_construct,
 	})
@@ -183,7 +183,7 @@ for _, v in pairs({
 		color = "#7dea1eff",
 		tiles = {tile},
 		place_param2 = 136,
-        visual_scale = 2.3,
+        visual_scale = 2,
 		on_construct = on_construct,
 	})
 end
@@ -195,7 +195,6 @@ end
 
 
 
--- content ids	local v = vector.apply(minp, function(a) return (a - 48) / chunksize end)
 local cn = {
 	["ethereal:bamboo_dirt"] = 1,
 	["ethereal:dry_dirt"] = 1,
@@ -225,7 +224,6 @@ end
 
 
 minetest.register_on_generated(function(minp, maxp, blockseed)
---	local v = vector.apply(minp, function(a) return (a - 48) / chunksize end)
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
 	local data = vm:get_data()
