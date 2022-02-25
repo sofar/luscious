@@ -94,10 +94,12 @@ for _, v in pairs({
 	"default:grass_3",
 	"default:grass_4",
 	"default:grass_5",
+	"default:dry_grass_4",
+	"default:dry_grass_5",
 	"default:junglegrass",
 }) do
 	local def = minetest.registered_nodes[v]
-	local tile, _ = def.tiles[1]:gsub("default_", "luscious_")
+	local tile, _ = def.tiles[1]:gsub("dry_", ""):gsub("default_", "luscious_")
 	minetest.override_item(v, {
 		paramtype2 = "color",
 		palette_index = 136,
@@ -108,7 +110,7 @@ for _, v in pairs({
 		on_construct = on_construct,
 	})
 end
-for i = 1, 5 do
+for i = 1, 3 do
 	minetest.register_alias_force("default:dry_grass_" .. i, "default:grass_" .. i)
 end
 
