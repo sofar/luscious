@@ -14,8 +14,7 @@
 local wp = minetest.get_worldpath() .. "/luscious"
 minetest.mkdir(wp)
 
-local mgp = minetest.get_mapgen_params()
-local chunksize = 16 * mgp.chunksize
+local chunksize = 16 * minetest.get_mapgen_setting("chunksize")
 
 local function cmpy(p2, y)
 	if y > 0 then
